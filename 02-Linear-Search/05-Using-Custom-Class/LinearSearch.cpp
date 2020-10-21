@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Student.h"
 
 using namespace std;
 
@@ -33,6 +34,14 @@ int main()
     int res2 = LinearSearch::search(data, sizeof(data)/sizeof(int), 666);
 
     cout << res2 << endl;
+
+    Student students[] = {Student("Alice"), Student("Bobo"), Student("Charles")};
+
+    Student bobo("Bobo");
+
+    int res3 = LinearSearch::search(students, sizeof(students)/sizeof(Student), bobo);
+
+    cout << res3 << endl;
 
     return 0;
 }
