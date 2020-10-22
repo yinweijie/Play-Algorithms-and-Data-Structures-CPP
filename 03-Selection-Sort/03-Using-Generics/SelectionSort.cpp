@@ -7,14 +7,16 @@ class SelectionSort
 private:
     SelectionSort() { }
 
-    static void swap(int arr[], int i, int j)
+    template <typename T>
+    static void swap(T arr[], int i, int j)
     {
         int t = arr[i];
         arr[i] = arr[j];
         arr[j] = t;
     }
 public:
-    static void sort(int arr[], int n)
+    template <typename T>
+    static void sort(T arr[], int n)
     {
         // arr[0...i) 是有序的；arr[i...n) 是无序的
         for(int i = 0; i < n; i++)
