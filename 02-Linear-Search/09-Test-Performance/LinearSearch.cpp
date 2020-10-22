@@ -60,7 +60,6 @@ int main()
         std::chrono::duration<double> time = end - start;
 
         cout << "n = " << n << " , 100 runs : " << time.count() << "s" << endl;
-
     }
 
     return 0;
