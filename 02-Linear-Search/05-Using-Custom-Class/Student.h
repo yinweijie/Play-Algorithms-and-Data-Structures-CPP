@@ -1,3 +1,6 @@
+#ifndef __STUDENT_H__
+#define __STUDENT_H__
+
 #include <string>
 
 using namespace std;
@@ -30,3 +33,5 @@ public:
         return (m_name.compare(rhs.m_name) == 0);
     }
 };
+
+#endif

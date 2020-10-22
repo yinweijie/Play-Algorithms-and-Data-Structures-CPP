@@ -1,3 +1,6 @@
+#ifndef __LINEARSEARCH_H__
+#define __LINEARSEARCH_H__
+
 class LinearSearch
 {
 private:
@@ -16,3 +19,5 @@ public:
         return -1;
     }
 };
+
+#endif
