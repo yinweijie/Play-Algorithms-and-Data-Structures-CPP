@@ -6,7 +6,6 @@
 using namespace std;
 using namespace chrono;
 
-
 class LinearSearch
 {
 private:
