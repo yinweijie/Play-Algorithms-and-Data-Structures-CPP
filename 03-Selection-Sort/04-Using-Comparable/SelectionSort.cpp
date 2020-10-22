@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Student.h"
 
 using namespace std;
 
@@ -49,5 +50,18 @@ int main()
     }
     cout << endl;
 
+    Student students[] = {Student("Alice", 98), 
+                          Student("Bobo", 100), 
+                          Student("Charles", 66)};
+    n = sizeof(students) / sizeof(Student);
+
+    SelectionSort::sort(students, n);
+
+    for(int i = 0; i < n; i++)
+    {
+        cout << students[i] << " ";
+    }
+    cout << endl;
+    
     return 0;
 }
