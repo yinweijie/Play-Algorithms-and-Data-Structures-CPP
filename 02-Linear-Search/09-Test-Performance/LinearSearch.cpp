@@ -43,6 +43,8 @@ int main()
 
     // cout << "n = " << n << " , 100 runs : " << time.count() << "s" << endl;
 
+    // delete[] data;
+
     std::array<int, 2> dataSize = {1000000, 10000000};
     for(int n: dataSize)
     {
@@ -59,6 +61,8 @@ int main()
         std::chrono::duration<double> time = end - start;
 
         cout << "n = " << n << " , 100 runs : " << time.count() << "s" << endl;
+
+        delete[] data;
     }
 
     return 0;
