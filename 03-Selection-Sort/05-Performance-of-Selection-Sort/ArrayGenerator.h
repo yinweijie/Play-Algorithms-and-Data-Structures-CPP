@@ -25,7 +25,7 @@ public:
         int* arr = new int[n];
 
         std::uniform_int_distribution<int> u(0, bound - 1);
-        std::default_random_engine e;
+        std::default_random_engine e(time(0));
         for(int i = 0; i < n; ++i)
         {
             arr[i] = u(e);

@@ -1,5 +1,10 @@
+#ifndef __SELECTIONSORT_H__
+#define __SELECTIONSORT_H__
+
 #include <iostream>
+#include <chrono>
 #include "ArrayGenerator.h"
+#include "SortingHelper.h"
 
 using namespace std;
 
@@ -37,19 +42,4 @@ public:
     }
 };
 
-int main()
-{
-    int arr[] = {1, 4, 2, 3, 6, 5};
-    int n = sizeof(arr) / sizeof(int);
-
-    SelectionSort::sort(arr, n);
-
-    for(int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-
-    ArrayGenerator::generateRandomArray(10, 10);
-    return 0;
-}
+#endif
