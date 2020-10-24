@@ -16,7 +16,7 @@ int main()
         int arr2[n];
         std::copy(arr, arr + n, arr2);
         SortingHelper::sortTest("InsertionSort", arr, n);
-        SortingHelper::sortTest("SelectionSort", arr2, n);
+        SortingHelper::sortTest("InsertionSort2", arr2, n);
 
         delete[] arr;
 
@@ -25,7 +25,7 @@ int main()
         arr = ArrayGenerator::generateOrderedArray(n);
         std::copy(arr, arr + n, arr2);
         SortingHelper::sortTest("InsertionSort", arr, n);
-        SortingHelper::sortTest("SelectionSort", arr2, n);
+        SortingHelper::sortTest("InsertionSort2", arr2, n);
 
         delete[] arr;
     }
