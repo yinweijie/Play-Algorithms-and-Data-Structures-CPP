@@ -3,8 +3,6 @@
 
 #include <iostream>
 #include <string>
-#include <map>
-#include <functional>
 #include "SelectionSort.h"
 
 using namespace std;

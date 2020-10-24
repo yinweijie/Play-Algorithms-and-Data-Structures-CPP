@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "SelectionSort.h"
+#include "InsertionSort.h"
 
 using namespace std;
 
@@ -35,6 +36,11 @@ public:
         {
             // SelectionSort::sort(arr, n);
             SelectionSort::sort2(arr, n);
+        }
+        else if(sortname.compare("InsertionSort") == 0)
+        {
+            // InsertionSort::sort(arr, n);
+            InsertionSort::sort2(arr, n);
         }
 
         auto end = std::chrono::steady_clock::now();
