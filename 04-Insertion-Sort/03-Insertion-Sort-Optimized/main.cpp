@@ -1,4 +1,6 @@
 #include <array>
+#include <algorithm>
+#include <iterator>
 #include "ArrayGenerator.h"
 #include "SortingHelper.h"
 
@@ -9,9 +11,11 @@ int main()
     for(int n: dataSize)
     {
         int* arr = ArrayGenerator::generateRandomArray(n, n);
+        int arr2[n];
+        std::copy(arr, arr + n, arr2);
 
-        // SortingHelper::sortTest("SelectionSort", arr, n);
         SortingHelper::sortTest("InsertionSort", arr, n);
+        SortingHelper::sortTest("InsertionSort2", arr2, n);
 
         delete[] arr;
     }

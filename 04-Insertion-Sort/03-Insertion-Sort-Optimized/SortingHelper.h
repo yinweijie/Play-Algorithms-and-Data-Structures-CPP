@@ -39,7 +39,10 @@ public:
         }
         else if(sortname.compare("InsertionSort") == 0)
         {
-            // InsertionSort::sort(arr, n);
+            InsertionSort::sort(arr, n);
+        }
+        else if(sortname.compare("InsertionSort2") == 0)
+        {
             InsertionSort::sort2(arr, n);
         }
 
