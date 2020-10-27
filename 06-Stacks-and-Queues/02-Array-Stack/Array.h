@@ -110,6 +110,16 @@ public:
         return m_data[index];
     }
 
+    T getLast() const
+    {
+        return get(m_size - 1);
+    }
+
+    T getFirst() const
+    {
+        return get(0);
+    }
+
     void set(int index, T e)
     {
         if(index < 0 || index >= m_size)
@@ -165,7 +175,7 @@ public:
 
         m_size--;
 
-        if(m_size == m_capacity / 2)
+        if((m_size == m_capacity / 4) && (m_capacity / 2 != 0))
         {
             resize(m_capacity / 2);
         }
