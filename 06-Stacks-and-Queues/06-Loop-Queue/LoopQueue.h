@@ -12,8 +12,8 @@ private:
 public:
     LoopQueue(int capacity = 10)
     {
-        m_data = new T[capacity];
-        m_capacity = capacity;
+        m_data = new T[capacity + 1];
+        m_capacity = capacity + 1;
         front = 0;
         tail = 0;
         m_size = 0;
@@ -21,7 +21,7 @@ public:
 
     int getCapacity() const override
     {
-        return m_capacity;
+        return m_capacity - 1;
     }
 
     bool isEmpty() const override
