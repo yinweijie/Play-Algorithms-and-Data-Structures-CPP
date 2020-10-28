@@ -100,7 +100,7 @@ public:
         m_size++;
     }
 
-    int get(int index) const
+    T get(int index) const
     {
         if(index < 0 || index >= m_size)
         {
@@ -149,7 +149,7 @@ public:
     }
 
     // 从数组中删除index位置的元素, 返回删除的元素
-    int remove(int index)
+    T remove(int index)
     {
         if(index < 0 || index >= m_size)
         {
@@ -174,13 +174,13 @@ public:
     }
 
     // 从数组中删除第一个元素, 返回删除的元素
-    int removeFirst()
+    T removeFirst()
     {
         return remove(0);
     }
 
     // 从数组中删除最后一个元素, 返回删除的元素
-    int removeLast()
+    T removeLast()
     {
         return remove(m_size - 1);
     }
