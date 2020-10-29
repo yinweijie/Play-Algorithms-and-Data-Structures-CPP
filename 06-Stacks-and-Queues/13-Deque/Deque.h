@@ -80,7 +80,7 @@ public:
         }
 
         front = (front - 1) < 0 ? (m_capacity - 1) : (front - 1);
-        m_data[front];
+        m_data[front] = e;
         m_size++;
     }
 
@@ -140,6 +140,7 @@ public:
         }
 
         int index = (tail - 1 < 0) ? (m_capacity - 1) : (tail - 1);
+
         return m_data[index];
     }
 
