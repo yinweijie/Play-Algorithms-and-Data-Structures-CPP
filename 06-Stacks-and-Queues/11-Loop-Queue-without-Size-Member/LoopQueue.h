@@ -91,7 +91,7 @@ public:
     {
         if(isEmpty())
         {
-            throw std::invalid_argument("Cannot dequeue from an empty queue.");
+            throw std::invalid_argument("Queue is empty.");
         }
 
         return m_data[front];

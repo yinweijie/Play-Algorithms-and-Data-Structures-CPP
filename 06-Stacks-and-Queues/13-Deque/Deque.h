@@ -1,13 +1,12 @@
-#ifndef __LOOPQUEUE_H__
-#define __LOOPQUEUE_H__
+#ifndef __Deque_H__
+#define __Deque_H__
 
 #include <iostream>
-#include "Queue.h"
 
 using namespace std;
 
 template <typename T>
-class LoopQueue : public Queue<T>
+class Deque
 {
 private:
     T* m_data;
@@ -15,7 +14,7 @@ private:
     int front, tail;
     int m_size;
 
-    friend ostream& operator<<(ostream& os, const LoopQueue<T>& queue)
+    friend ostream& operator<<(ostream& os, const Deque<T>& queue)
     {
         os << "Queue: size = " << queue.m_size << " , capacity = " << queue.getCapacity() << endl;
         os << "front [";
@@ -34,7 +33,7 @@ private:
         return os;
     }
 public:
-    LoopQueue(int capacity = 10)
+    Deque(int capacity = 10)
     {
         // change "capacity + 1" to "capacity"
         m_data = new T[capacity];
@@ -50,20 +49,19 @@ public:
         return m_capacity;
     }
 
-    bool isEmpty() override
+    bool isEmpty()
     {
         // change return statement
         return (m_size == 0);
     }
 
-    int getSize() override
+    int getSize()
     {
         return m_size;
     }
 
-    void enqueue(T e) override
+    void addLast(T e)
     {
-        // change if statement
         if(m_size == m_capacity)
         {
             resize(getCapacity() * 2);
@@ -74,7 +72,19 @@ public:
         m_size++;
     }
 
-    T dequeue() override
+    void addFront(T e)
+    {
+        if(m_size == m_capacity)
+        {
+            resize(getCapacity() * 2);
+        }
+
+        front = (front - 1) < 0 ? (m_capacity - 1) : (front - 1);
+        m_data[front];
+        m_size++;
+    }
+
+    T removeFront()
     {
         if(isEmpty())
         {
@@ -93,14 +103,44 @@ public:
         return ret;
     }
 
-    T getFront() override
+    T removeLast()
     {
         if(isEmpty())
         {
-            throw std::invalid_argument("Queue is empty.");
+            throw std::invalid_argument("Cannot dequeue from an empty queue");
+        }
+
+        tail = (tail - 1 < 0) ? (m_capacity - 1) : tail - 1;
+        T ret = m_data[tail];
+        m_size--;
+
+        if(m_size == m_capacity / 4 && m_capacity / 2 != 0)
+        {
+            resize(m_capacity / 2);
+        }
+
+        return ret;
+    }
+
+    T getFront()
+    {
+        if(isEmpty())
+        {
+            throw std::invalid_argument("Cannot dequeue from an empty queue.");
         }
 
         return m_data[front];
+    }
+
+    T getLast()
+    {
+        if(isEmpty())
+        {
+            throw std::invalid_argument("Cannot dequeue from an empty queue.");
+        }
+
+        int index = (tail - 1 < 0) ? (m_capacity - 1) : (tail - 1);
+        return m_data[index];
     }
 
     void resize(int newCapacity)
