@@ -16,7 +16,7 @@ private:
 
         friend ostream& operator<<(ostream& os, const Node& node)
         {
-            // os << node.e;
+            os << node.e;
 
             return os;
         }
