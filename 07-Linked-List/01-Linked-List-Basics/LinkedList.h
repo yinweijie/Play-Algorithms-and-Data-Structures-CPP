@@ -29,7 +29,10 @@ private:
 
         Node(T e) : Node(e, nullptr) { }
 
-        Node() : Node(0, nullptr) { }
+        Node()
+        {
+            next = nullptr;
+        }
     };
 };
 
