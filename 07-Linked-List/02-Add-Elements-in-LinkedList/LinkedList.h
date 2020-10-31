@@ -44,6 +44,18 @@ public:
         m_size = 0;
     }
 
+    ~LinkedList()
+    {
+        Node* cur = m_head;
+
+        while(cur)
+        {
+            Node* toDel = cur;
+            cur = cur->next;
+            delete cur;
+        }
+    }
+
     // 获取链表中的元素个数
     int getSize()
     {
