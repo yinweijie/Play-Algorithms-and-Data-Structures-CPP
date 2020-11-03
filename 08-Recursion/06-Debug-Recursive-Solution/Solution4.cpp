@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -38,34 +39,59 @@ struct ListNode {
 };
 
 class Solution {
+private:
+    string generateDepthString(int depth)
+    {
+        string s;
+        for(int i = 0; i < depth; i++)
+        {
+            s += "--";
+        }
+
+        return s;
+    }
 public:
-    ListNode* removeElements(ListNode* head, int val) {
+    ListNode* removeElements(ListNode* head, int val, int depth) {
+        string depthString = generateDepthString(depth);
+
+        cout << depthString;
+        cout << "Call remove " << val << " in " << (*head) << endl;
         if(head == NULL)
         {
+            cout << depthString;
+            cout << "Return: " << (*head) << endl;
             return NULL;
         }
 
-        ListNode* ret = removeElements(head->next, val);
+        ListNode* ret = removeElements(head->next, val, depth + 1);
+        cout << depthString;
+        cout << "After remove " << val << ": " << (*ret) << endl;
         if(head->val == val)
         {
             delete head;
-            return ret;
+            ret = ret;
         }
         else
         {
             head->next = ret;
-            return head;
+            ret = head;
         }
+
+        cout << depthString;
+        cout << "Return: " << (*ret) << endl;
+
+        return ret;
     }
 };
 
 int main()
 {
     int nums[] = {1, 2, 6, 3, 4, 5, 6};
+    // int nums[] = {1, 2, 6};
     int n =  sizeof(nums) / sizeof(int);
     ListNode* head = new ListNode(nums, n);
     cout << (*head) << endl;
     
-    ListNode* ret = Solution().removeElements(head, 6);
+    ListNode* ret = Solution().removeElements(head, 6, 0);
     cout << (*ret) << endl;
 }
