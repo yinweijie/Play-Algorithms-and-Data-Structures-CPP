@@ -203,6 +203,9 @@ public:
             throw std::invalid_argument("Remove failed. Illegal index.");
         }
 
+        pair<Node*, T> ret = remove(m_head, index);
+        
+        return ret.second;
     }
 
     // 从以node为头结点的链表中，删除第index位置的元素，递归算法
@@ -239,6 +242,21 @@ public:
     // 从链表中删除元素e
     void removeElement(T e)
     {
+        removeElement(m_head, e);
+    }
+
+    Node* removeElement(Node* node, T e)
+    {
+        if(node->e == e)
+        {
+            Node* ret = node->next;
+            delete node;
+            return ret;
+        }
+
+        node->next = removeElement(node->next, e);
+        
+        return node;
     }
 };
 
