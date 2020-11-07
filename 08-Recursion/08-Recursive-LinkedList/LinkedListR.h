@@ -204,7 +204,9 @@ public:
         }
 
         pair<Node*, T> ret = remove(m_head, index);
-        
+        m_head = ret.first;
+        m_size--;
+
         return ret.second;
     }
 
@@ -242,7 +244,8 @@ public:
     // 从链表中删除元素e
     void removeElement(T e)
     {
-        removeElement(m_head, e);
+        m_head = removeElement(m_head, e);
+        m_size--;
     }
 
     Node* removeElement(Node* node, T e)
@@ -255,7 +258,7 @@ public:
         }
 
         node->next = removeElement(node->next, e);
-        
+
         return node;
     }
 };
