@@ -80,6 +80,7 @@ public:
         return (m_size == 0);
     }
 
+public:
     // 在链表的index(0-based)位置添加新的元素e
     void add(int index, T e)
     {
@@ -92,6 +93,7 @@ public:
         m_size++;
     }
 
+private:
     // 在以node为头结点的链表的index位置插入元素e，递归算法
     Node* add(Node* node, int index, T e)
     {
@@ -105,6 +107,7 @@ public:
         return node;
     }
 
+public:
     // 在链表头添加新的元素e
     void addFirst(T e)
     {
@@ -117,6 +120,7 @@ public:
         add(m_size, e);
     }
 
+public:
     // 获得链表的第index(0-based)个位置的元素
     T get(int index)
     {
@@ -128,6 +132,7 @@ public:
         return get(m_head, index);
     }
 
+private:
     // 在以node为头结点的链表中，找到第index个元素，递归算法
     T get(Node* node, int index)
     {
@@ -139,6 +144,7 @@ public:
         return get(node->next, index - 1);
     }
 
+public:
     // 获得链表的第一个元素
     T getFirst()
     {
@@ -151,6 +157,7 @@ public:
         return get(m_size - 1);
     }
 
+public:
     // 修改链表的第index(0-based)个位置的元素为e
     void set(int index, T e)
     {
@@ -162,6 +169,7 @@ public:
         set(m_head, index, e);
     }
 
+private:
     void set(Node* node, int index, T e)
     {
         if(index == 0)
@@ -173,12 +181,14 @@ public:
         set(node->next, index - 1, e);
     }
 
+public:
     // 查找链表中是否有元素e
     bool contains(T e)
     {
         return contains(m_head, e);
     }
 
+private:
     // 在以node为头结点的链表中，查找是否存在元素e，递归算法
     bool contains(Node* node, T e)
     {
@@ -195,6 +205,7 @@ public:
         return contains(node->next, e);
     }
 
+public:
     // 从链表中删除index(0-based)位置的元素, 返回删除的元素
     T remove(int index)
     {
@@ -210,6 +221,7 @@ public:
         return ret.second;
     }
 
+private:
     // 从以node为头结点的链表中，删除第index位置的元素，递归算法
     // 返回值包含两个元素，删除后的链表头结点和删除的值:)
     pair<Node*, T> remove(Node* node, int index)
@@ -229,6 +241,7 @@ public:
         return ret;
     }
 
+public:
     // 从链表中删除第一个元素, 返回删除的元素
     T removeFirst()
     {
@@ -241,6 +254,7 @@ public:
         return remove(m_size - 1);
     }
 
+public:
     // 从链表中删除元素e
     void removeElement(T e)
     {
@@ -248,6 +262,8 @@ public:
         m_size--;
     }
 
+private:
+    // 从以node为头结点的链表中，删除元素e，递归算法
     Node* removeElement(Node* node, T e)
     {
         if(node->e == e)
