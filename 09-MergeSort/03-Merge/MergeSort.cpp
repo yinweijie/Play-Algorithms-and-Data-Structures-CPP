@@ -5,7 +5,14 @@ using namespace std;
 
 class MergeSort
 {
+public:
+    template <typename T>
+    static void sort(T arr[], int n)
+    {
+
+    }
 private:
+    // 合并两个有序的区间 arr[l, mid] 和 arr[mid + 1, r]
     template <typename T>
     static void merge(T arr[], int l, int mid, int r)
     {
