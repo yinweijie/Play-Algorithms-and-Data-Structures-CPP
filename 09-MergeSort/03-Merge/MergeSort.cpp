@@ -5,7 +5,7 @@ using namespace std;
 
 class MergeSort
 {
-public:
+private:
     template <typename T>
     static void merge(T arr[], int l, int mid, int r)
     {
@@ -19,26 +19,25 @@ public:
         {
             if(i > mid)
             {
-                arr[k] = tmp[j];
+                arr[k] = tmp[j - l]; // temp索引从0开始，arr索引从l开始
                 j++;
             }
             else if(j > r)
             {
-                arr[k] = tmp[i];
+                arr[k] = tmp[i - l];
                 i++;
             }
-            else if(tmp[i] < tmp[j])
+            else if(tmp[i - l] < tmp[j - l])
             {
                 arr[k] = tmp[i];
                 i++;
             }
-            else if(tmp[j] <= tmp[i])
+            else
             {
-                arr[k] = tmp[j];
+                arr[k] = tmp[j - l];
                 j++;
             }
         }
-
     }
 };
 
@@ -48,7 +47,7 @@ int main()
     int n =  sizeof(arr)/sizeof(int);
 
     int l = 0, r = n - 1, mid = (l + r) / 2;
-    MergeSort::merge(arr, l, mid, r);
+    // MergeSort::merge(arr, l, mid, r);
 
     for(int i = 0; i < n; i++)
     {
