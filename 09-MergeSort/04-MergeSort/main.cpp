@@ -13,7 +13,6 @@ int main()
     int n = 100000;
 
     int* arr = ArrayGenerator::generateRandomArray(n, n);
-    MergeSort::sort(arr, n);
 
     int arr2[n];
     std::copy(arr, arr + n, arr2);
