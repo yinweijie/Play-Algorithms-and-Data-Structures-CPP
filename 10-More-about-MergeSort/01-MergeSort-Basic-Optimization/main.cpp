@@ -12,10 +12,20 @@ int main()
 {
     int n = 100000;
 
-    int* arr = ArrayGenerator::generateRandomArray(n, n);
-    MergeSort::sort(arr, n);
+    cout << "Random Array : " << endl;
 
+    int* arr = ArrayGenerator::generateRandomArray(n, n);
     int arr2[n];
+    std::copy(arr, arr + n, arr2);
+
+    SortingHelper::sortTest("MergeSort", arr, n);
+    SortingHelper::sortTest("MergeSort2", arr2, n);
+
+    delete[] arr;
+
+    cout << "Ordered Array : " << endl;
+
+    arr = ArrayGenerator::generateOrderedArray(n);
     std::copy(arr, arr + n, arr2);
 
     SortingHelper::sortTest("MergeSort", arr, n);
