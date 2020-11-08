@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -12,12 +13,12 @@ public:
     template <typename T>
     static void sort(T arr[], int n)
     {
-        sort(arr, 0, n - 1);
+        sort(arr, 0, n - 1, 0);
     }
 
 private:
     template <typename T>
-    static void sort(T arr[], int l, int r)
+    static void sort(T arr[], int l, int r, int depth)
     {
         if(l >= r)
         {
@@ -25,9 +26,20 @@ private:
         }
 
         int mid = l + (r - l) / 2;
-        sort(arr, l, mid);
-        sort(arr, mid + 1, r);
+        sort(arr, l, mid, depth + 1);
+        sort(arr, mid + 1, r, depth + 1);
         merge(arr, l, mid, r);
+    }
+
+    string generateDepthString(int depth)
+    {
+        string s;
+        for(int i = 0; i < depth; i++)
+        {
+            s += "--";
+        }
+
+        return s;
     }
 
     // 合并两个有序的区间 arr[l, mid] 和 arr[mid + 1, r]
@@ -36,7 +48,7 @@ private:
     {
         int n = r - l + 1;
         T tmp[n];
-        std::copy(arr + l, arr + r + 1, tmp); // 注意索引对应关系
+        std::copy(arr + l, arr + r + 1, tmp);
 
         int i = l, j = mid + 1;
 
