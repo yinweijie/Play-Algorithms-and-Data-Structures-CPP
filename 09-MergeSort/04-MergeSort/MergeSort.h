@@ -35,7 +35,7 @@ private:
     static void merge(T arr[], int l, int mid, int r)
     {
         int n = r - l + 1;
-        T tmp[n];
+        T* tmp = new T[n];
         std::copy(arr + l, arr + r + 1, tmp); // 注意索引对应关系
 
         int i = l, j = mid + 1;
@@ -63,6 +63,8 @@ private:
                 j++;
             }
         }
+
+        delete[] tmp;
     }
 };
 
