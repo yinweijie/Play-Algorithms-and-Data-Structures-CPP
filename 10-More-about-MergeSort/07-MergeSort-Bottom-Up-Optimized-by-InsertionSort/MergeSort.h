@@ -9,6 +9,8 @@ using namespace std;
 
 class MergeSort
 {
+private:
+    MergeSort() { }
 public:
     // 自底向上的归并排序
     template <typename T>

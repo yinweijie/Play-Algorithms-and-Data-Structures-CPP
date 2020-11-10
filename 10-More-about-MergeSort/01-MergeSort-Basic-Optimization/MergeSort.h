@@ -8,6 +8,8 @@ using namespace std;
 
 class MergeSort
 {
+private:
+    MergeSort() { }
 public:
     template <typename T>
     static void sort(T arr[], int n)
