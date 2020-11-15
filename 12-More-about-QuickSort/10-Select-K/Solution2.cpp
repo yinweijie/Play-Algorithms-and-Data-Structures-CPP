@@ -50,14 +50,13 @@ public:
 
         if(k < 1) return res;
 
-        res.resize(k);
+        res.reserve(k);
 
         int indx = selectK(arr, 0, arr.size() - 1, k - 1);
 
-        // for(int i = 0; i < k; i++) {
-        //     res.emplace_back(arr[i]);
-        // }
-        std::copy(arr.begin(), arr.begin() + k, res.begin());
+        for(int i = 0; i < k; i++) {
+            res.emplace_back(arr[i]);
+        }
 
         return res;
     }

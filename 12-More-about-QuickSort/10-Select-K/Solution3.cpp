@@ -51,10 +51,9 @@ public:
         selectK(arr, 0, arr.size() - 1, k - 1);
 
         res.reserve(k);
-        // for(int i = 0; i < k; i++) {
-        //     res.emplace_back(arr[i]);
-        // }
-        std::copy(arr.begin(), arr.begin() + k, res.begin());
+        for(int i = 0; i < k; i++) {
+            res.emplace_back(arr[i]);
+        }
 
         return res;
     }
