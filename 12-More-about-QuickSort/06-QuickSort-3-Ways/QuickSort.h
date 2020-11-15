@@ -90,10 +90,11 @@ private:
     template <typename T>
     static int partition2ways(T arr[], int l, int r, uni_dist_int& u, dft_rdn_egn& e)
     {
+        // 生成 [l, r] 之间的随机索引
         int p = (u(e) % (r - l + 1)) + l;
         swap(arr, l, p);
 
-        // arr[l+1...j] < v ; arr[j+1...i] >= v
+        // arr[l+1...i-1] <= v; arr[j+1...r] >= v
         int i = l + 1, j = r;
         while(true)
         {
