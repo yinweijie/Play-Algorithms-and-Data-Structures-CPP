@@ -9,7 +9,7 @@ private:
 public:
     int reversePairs(vector<int>& nums) {
         vector<int> tmp;
-        tmp.reserve(nums.size());
+        tmp.resize(nums.size());
 
         res = 0;
         sort(nums, 0, nums.size() - 1, tmp);
