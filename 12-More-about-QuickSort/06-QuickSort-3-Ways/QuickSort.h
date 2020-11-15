@@ -49,7 +49,7 @@ private:
         int p = (u(e) % (r - l + 1)) + l;
         swap(arr, l, p);
 
-        // arr[l+1...j] < v ; arr[j+1...i] >= v
+        // arr[l+1...j] < v ; arr[j+1...i-1] >= v
         int j = l;
         for(int i = l + 1; i <= r; i++)
         {
