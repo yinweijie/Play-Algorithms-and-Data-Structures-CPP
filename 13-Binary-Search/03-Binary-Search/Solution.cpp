@@ -1,3 +1,5 @@
+// https://leetcode-cn.com/problems/binary-search/
+
 #include <vector>
 
 using namespace std;
@@ -8,6 +10,7 @@ public:
     {
         int l = 0, r = data.size() - 1;
 
+        // 在 data[l, r] 的范围中查找 target
         while(l <= r)
         {
             int mid = l + (r - l) / 2;
