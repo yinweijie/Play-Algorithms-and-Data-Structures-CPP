@@ -4,6 +4,7 @@ private:
     BinarySearch() { }
 
 public:
+    // 非递归实现二分查找法
     template <typename T>
     static int search(T data[], T target, int n)
     {
@@ -28,6 +29,7 @@ public:
     }
 
 public:
+    // 递归实现二分查找法
     template <typename T>
     static int searchR(T data[], T target, int n)
     {
