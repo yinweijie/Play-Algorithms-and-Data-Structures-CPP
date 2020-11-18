@@ -117,6 +117,29 @@ public:
 
         return l;
     }
+
+    // < target 的最大值索引
+    template <typename T>
+    static int lower(T data[], T target, int n)
+    {
+        int l = -1, r = n - 1;
+
+        while(l < r)
+        {
+            int mid = l + (r - l + 1) / 2;
+
+            if(data[mid] >= target)
+            {
+                r = mid - 1;
+            }
+            else
+            {
+                l = mid;
+            }
+        }
+
+        return l;
+    }
 };
 
 int main()
@@ -126,7 +149,7 @@ int main()
 
     for(int i = 0; i <= 6; i++)
     {
-        cout << BinarySearch::lower_ceil(arr, i, n) << " ";
+        cout << BinarySearch::lower(arr, i, n) << " ";
     }
     cout << endl;
 

@@ -117,6 +117,67 @@ public:
 
         return l;
     }
+
+    // < target 的最大值索引
+    template <typename T>
+    static int lower(T data[], T target, int n)
+    {
+        int l = -1, r = n - 1;
+
+        while(l < r)
+        {
+            int mid = l + (r - l + 1) / 2;
+
+            if(data[mid] >= target)
+            {
+                r = mid - 1;
+            }
+            else
+            {
+                l = mid;
+            }
+        }
+
+        return l;
+    }
+
+    // < target ，返回最大值索引
+    // == target，返回最小索引
+    template <typename T>
+    static int lower_floor(T data[], T target, int n)
+    {
+        int l = lower(data, target, n);
+
+        if(l + 1 <= n - 1 && data[l + 1] == target)
+        {
+            return l + 1;
+        }
+
+        return l;
+    }
+
+    // <= target 最大索引
+    template <typename T>
+    static int upper_floor(T data[], T target, int n)
+    {
+        int l = -1, r = n - 1;
+
+        while(l < r)
+        {
+            int mid = l + (r - l + 1) / 2;
+
+            if(data[mid] > target)
+            {
+                r = mid - 1;
+            }
+            else
+            {
+                l = mid;
+            }
+        }
+
+        return l;
+    }
 };
 
 int main()
@@ -124,9 +185,17 @@ int main()
     int arr[] = {1, 1, 3, 3, 5, 5};
     int n = sizeof(arr) / sizeof(arr[0]);
 
+    cout << "lower_floor : ";
     for(int i = 0; i <= 6; i++)
     {
-        cout << BinarySearch::lower_ceil(arr, i, n) << " ";
+        cout << BinarySearch::lower_floor(arr, i, n) << " ";
+    }
+    cout << endl;
+
+    cout << "lower_floor : ";
+    for(int i = 0; i <= 6; i++)
+    {
+        cout << BinarySearch::upper_floor(arr, i, n) << " ";
     }
     cout << endl;
 
