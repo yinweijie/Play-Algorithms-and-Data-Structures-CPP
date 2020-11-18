@@ -94,6 +94,29 @@ public:
 
         return u;
     }
+
+    // >= target 的最小值索引
+    template <typename T>
+    static int lower_ceil(T data[], T target, int n)
+    {
+        int l = 0, r = n;
+
+        while(l < r)
+        {
+            int mid = l + (r - l) / 2;
+
+            if(data[mid] < target)
+            {
+                l = mid + 1;
+            }
+            else
+            {
+                r = mid;
+            }
+        }
+
+        return l;
+    }
 };
 
 int main()
@@ -103,7 +126,7 @@ int main()
 
     for(int i = 0; i <= 6; i++)
     {
-        cout << BinarySearch::upper_ceil(arr, i, n) << " ";
+        cout << BinarySearch::lower_ceil(arr, i, n) << " ";
     }
     cout << endl;
 
