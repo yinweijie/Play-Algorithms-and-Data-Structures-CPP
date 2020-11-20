@@ -20,23 +20,23 @@ private:
     };
 
     Node* root;
-    int size;
+    int m_size;
 
 public:
     BST()
     {
         root = nullptr;
-        size = 0;
+        m_size = 0;
     }
 
     int size()
     {
-        return size;
+        return m_size;
     }
 
     bool isEmpty()
     {
-        return size == 0;
+        return m_size == 0;
     }
 };
 
