@@ -80,48 +80,6 @@ private:
     }
 
 public:
-    void add2(T e)
-    {
-        if(root == nullptr)
-        {
-            root = new Node(e);
-            m_size++;
-            return;
-        }
-
-        Node* p = root;
-        while(p != nullptr)
-        {
-            if(e < p->e)
-            {
-                if(p->left == nullptr)
-                {
-                    p->left = new Node(e);
-                    m_size++;
-                    return;
-                }
-
-                p = p->left;
-            }
-            else if(e > p->e)
-            {
-                if(p->right == nullptr)
-                {
-                    p->right = new Node(e);
-                    m_size++;
-                    return;
-                }
-
-                p = p->right;
-            }
-            else
-            {
-                return;
-            }
-        }
-    }
-
-public:
     bool contains(T e)
     {
         return contains(root, e);
