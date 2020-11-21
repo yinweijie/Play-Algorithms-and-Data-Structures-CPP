@@ -118,7 +118,7 @@ public:
         preOrder(root);
     }
 
-public:
+private:
     void preOrder(Node* node)
     {
         if(node == nullptr)
