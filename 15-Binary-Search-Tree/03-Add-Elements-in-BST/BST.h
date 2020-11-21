@@ -26,29 +26,29 @@ private:
     };
 
     Node* root;
-    int size;
+    int m_size;
 
 public:
     BST()
     {
         root = nullptr;
-        size = 0;
+        m_size = 0;
     }
 
     ~BST()
     {
         delete root;
-        size = 0;
+        m_size = 0;
     }
 
     int size()
     {
-        return size;
+        return m_size;
     }
 
     bool isEmpty()
     {
-        return size == 0;
+        return m_size == 0;
     }
 
     // 向以node为根的二分搜索树中插入元素e，递归算法
@@ -57,7 +57,7 @@ public:
         if(root == nullptr)
         {
             root = new Node(e);
-            size++;
+            m_size++;
         }
         else
         {
@@ -76,13 +76,13 @@ private:
         if(e > node->e && node->right == nullptr)
         {
             node->right = new Node(e);
-            size++;
+            m_size++;
             return;
         }
         else if(e < node->e && node->left == nullptr)
         {
             node->left = new Node(e);
-            size++;
+            m_size++;
             return;
         }
 
