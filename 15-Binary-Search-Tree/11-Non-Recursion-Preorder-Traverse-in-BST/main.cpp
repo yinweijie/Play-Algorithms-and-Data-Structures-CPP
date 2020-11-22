@@ -21,16 +21,20 @@ int main()
     // 2  4     8  //
     /////////////////
 
-    bst.preOrder();
-    cout << endl;
-    bst.preOrderNR();
-    cout << endl;
+    // bst.preOrder();
+    // cout << endl;
+    // bst.preOrderNR();
+    // cout << endl;
 
     // bst.inOrder();
     // cout << endl;
-
-    // bst.postOrder();
+    // bst.inOrderNR();
     // cout << endl;
+
+    bst.postOrder();
+    cout << endl;
+    bst.postOrderNR();
+    cout << endl;
 
     return 0;
 }

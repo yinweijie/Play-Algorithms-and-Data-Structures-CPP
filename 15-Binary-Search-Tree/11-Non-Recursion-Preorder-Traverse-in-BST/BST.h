@@ -140,23 +140,23 @@ public:
             return;
         }
 
-        stack<Node*> stack;
-        stack.push(root);
+        stack<Node*> stk;
+        stk.push(root);
 
-        while(!stack.empty())
+        while(!stk.empty())
         {
-            Node* node = stack.top();
-            stack.pop();
+            Node* node = stk.top();
+            stk.pop();
 
             cout << node->e << endl;
 
             if(node->right != nullptr)
             {
-                stack.push(node->right);
+                stk.push(node->right);
             }
             if(node->left != nullptr)
             {
-                stack.push(node->left);
+                stk.push(node->left);
             }
         }
     }
@@ -181,6 +181,43 @@ private:
     }
 
 public:
+    // 参考：https://class.imooc.com/course/qadetail/255505
+    void inOrderNR()
+    {
+        if(root == nullptr)
+        {
+            return;
+        }
+
+        stack<Node*> stk;
+        Node* cur = root;
+        stk.push(cur);
+        while(cur->left != nullptr)
+        {
+            stk.push(cur->left);
+            cur = cur->left;
+        }
+
+        while(!stk.empty())
+        {
+            Node* node = stk.top();
+            stk.pop();
+            cout << node->e << endl;
+
+            if(node->right != nullptr)
+            {
+                Node* tmp = node->right->left;
+                stk.push(node->right);
+                while(tmp != nullptr)
+                {
+                    stk.push(tmp);
+                    tmp = tmp->left;
+                }
+            }
+        }
+    }
+
+public:
     void postOrder()
     {
         postOrder(root);
@@ -197,6 +234,58 @@ private:
         postOrder(node->left);
         postOrder(node->right);
         cout << (node->e) << endl;
+    }
+
+public:
+    // 参考：https://class.imooc.com/course/qadetail/255505
+    void postOrderNR()
+    {
+        if(root == nullptr)
+        {
+            return;
+        }
+
+        stack<Node*> stk;
+        Node* cur = root;
+        stk.push(cur);
+        while(cur->left != nullptr)
+        {
+            stk.push(cur->left);
+            cur = cur->left;
+        }
+
+        stack<Node*> cpyStack;
+        while(!stk.empty())
+        {
+            Node* node = stk.top();
+            stk.pop();
+            
+            if(node->right != nullptr)
+            {
+                // 一定要在上面先pop，然后新定义一个Node，push进stack，这样保证该Node没有左右孩子，
+                // 否则该节点为top的时候，又会回到该节点的right节点，出现死循环
+                Node* cpyNode = new Node(node->e);
+                stk.push(cpyNode);
+                cpyStack.push(cpyNode);
+
+                Node* tmp = node->right->left;
+                stk.push(node->right);
+                while(tmp != nullptr)
+                {
+                    stk.push(tmp);
+                    tmp = tmp->left;
+                }
+            }
+            else
+            {
+                cout << node->e << endl;
+                if(!cpyStack.empty() && node == cpyStack.top()) // 保证不出现内存泄漏
+                {
+                    delete node;
+                    cpyStack.pop();
+                }
+            }
+        }
     }
 
 private:
