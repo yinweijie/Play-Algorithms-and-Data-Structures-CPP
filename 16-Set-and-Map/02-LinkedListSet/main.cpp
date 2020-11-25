@@ -12,25 +12,24 @@ void calcWords(string str)
     // ifstream fin("test.txt");
     ifstream fin(str);
     string text;
-    vector<string> words1;
-    LinkedListSet<string> set1;
+    vector<string> words;
+    LinkedListSet<string> set;
 
     while(getline(fin, text))
     {
         // -std=c++17
         // 参考：https://www.zhihu.com/question/36642771/answer/865135551
-        std::regex ws_re("\\s+"); // whitespace
-        std::vector<std::string> v(std::sregex_token_iterator(text.begin(), text.end(), ws_re, -1), std::sregex_token_iterator());
-        for(auto&& s: v)
+        char* token = strtok(const_cast<char*>(text.data()), " ");
+        while(token != NULL)
         {
-            // std::cout << s <<"\n";
-            words1.push_back(s);
-            set1.add(s);
+            words.push_back(token);
+            set.add(token);
+            token = strtok(NULL, " ");
         }
     }
 
-    cout << words1.size() << endl;
-    cout << set1.getSize() << endl;
+    cout << words.size() << endl;
+    cout << set.getSize() << endl;
 }
 
 int main()
