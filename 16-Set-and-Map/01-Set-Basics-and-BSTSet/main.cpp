@@ -17,7 +17,6 @@ void calcWords(string str)
 
     while(getline(fin, text))
     {
-        // -std=c++17
         // 参考：https://www.zhihu.com/question/36642771/answer/865135551
         char* token = strtok(const_cast<char*>(text.data()), " ");
         while(token != NULL)
