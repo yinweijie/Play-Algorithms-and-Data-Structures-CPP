@@ -6,7 +6,7 @@
 #include <chrono>
 #include <cctype>
 #include "Map.h"
-#include "LinkedListMap.h"
+#include "BSTMap.h"
 
 using namespace std;
 
@@ -51,7 +51,7 @@ void calcWords(Map<string, int>& map, string str)
 
 int main()
 {
-    LinkedListMap<string, int> map;
+    BSTMap<string, int> map;
 
     calcWords(map, "pride-and-prejudice.txt");
 

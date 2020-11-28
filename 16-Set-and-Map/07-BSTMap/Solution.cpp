@@ -26,162 +26,222 @@ public:
 };
 
 template <typename K, typename V>
-class LinkedListMap : public Map<K, V>
+class BSTMap : public Map<K, V>
 {
 private:
     struct Node
     {
         K Key;
         V Value;
-        Node* next;
+        Node* left;
+        Node* right;
 
-        friend ostream& operator<<(ostream& os, const Node& node)
+        Node(K key, V value)
         {
-            os << node.Key << " : " << node.Value;
-
-            return os;
+            Key = key;
+            Value = value;
+            left = nullptr;
+            right = nullptr;
         }
 
-        Node(K key, V value, Node* next)
+        ~Node()
         {
-            this->Key = key;
-            this->Value = value;
-            this->next = next;
-        }
-
-        Node(K key, V value) : Key(key), Value(value), next(nullptr) { }
-
-        Node()
-        {
-            next = nullptr;
+            if(left != nullptr) delete left;
+            if(right != nullptr) delete right;
         }
     };
 
-    Node* m_dummyHead;
+    Node* root;
     int m_size;
 
 public:
-    LinkedListMap()
+    BSTMap()
     {
-        m_dummyHead = new Node();
+        root = nullptr;
         m_size = 0;
     }
 
-    ~LinkedListMap()
+    ~BSTMap()
     {
-        Node* cur = m_dummyHead;
-
-        while(cur)
-        {
-            Node* toDel = cur;
-            cur = cur->next;
-            delete toDel;
-        }
+        delete root;
+        m_size = 0;
     }
 
+    int getSize() override
+    {
+        return m_size;
+    }
+
+    bool isEmpty() override
+    {
+        return m_size == 0;
+    }
+
+public:
+    // 向二分搜索树中添加新的元素(key, value)
     void add(K key, V value) override
     {
-        Node* node = getNode(key);
+        root = add(root, key, value);
+    }
+
+private:
+    // 向以node为根的二分搜索树中插入元素(key, value)，递归算法
+    // 返回插入新节点后二分搜索树的根
+    Node* add(Node* node, K key, V value)
+    {
         if(node == nullptr)
         {
-            m_dummyHead->next = new Node(key, value, m_dummyHead->next);
             m_size++;
+            return new Node(key, value);
+        }
+
+        if(key < node->Key)
+        {
+            node->left = add(node->left, key, value);
+        }
+        else if(key > node->Key)
+        {
+            node->right = add(node->right, key, value);
         }
         else
         {
             node->Value = value;
         }
-    }
 
-    V remove(K key) override
-    {
-        Node* pre = m_dummyHead;
-        while(pre->next != nullptr)
-        {
-            if(pre->next->Key == key)
-            {
-                break;
-            }
-            pre = pre->next;
-        }
-
-        if(pre->next != nullptr)
-        {
-            Node* toDel = pre->next;
-            V res = toDel->Value;
-
-            pre->next = toDel->next;
-            toDel->next = nullptr;
-            delete toDel;
-            m_size--;
-
-            return res;
-        }
-        else
-        {
-            // throw std::invalid_argument("Key :" + string(key) + " does not exist.");
-            return 0;
-        }
+        return node;
     }
 
 private:
-    Node* getNode(K key)
+    // 返回以node为根节点的二分搜索树中，key所在的节点
+    Node* getNode(Node* node, K key)
     {
-        Node* cur = m_dummyHead->next;
-        while(cur != nullptr)
+        if(node == nullptr)
         {
-            if(cur->Key == key)
-            {
-                return cur;
-            }
-            cur = cur->next;
+            return nullptr;
         }
-        return nullptr;
+
+        if(node->Key == key)
+        {
+            return node;
+        }
+        else if(key > node->Key)
+        {
+            return getNode(node->right, key);
+        }
+        else
+        {
+            return getNode(node->left, key);
+        }
     }
 
 public:
     bool contains(K key) override
     {
-        return (getNode(key) != nullptr);
+        return (getNode(root, key) != nullptr);
     }
     
     V get(K key) override
     {
-        Node* node = getNode(key);
-        if(node == nullptr)
-        {
-            // throw std::invalid_argument("Key: " + string(key) + " does not exist.");
-            return 0;
-        }
+        Node* node = getNode(root, key);
         return node->Value;
     }
-
+    
     void set(K key, V newValue) override
     {
-        Node* node = getNode(key);
-        if(node == nullptr)
-        {
-            // throw std::invalid_argument("Key: " + string(key) + " does not exist.");
-            return;
-        }
+        Node* node = getNode(root, key);
         node->Value = newValue;
     }
     
-    int getSize() override
+private:
+    Node* minimum(Node* node)
     {
-        return m_size;
+        if(node->left == nullptr)
+        {
+            return node;
+        }
+        return minimum(node->left);
     }
-    
-    bool isEmpty() override
+
+    Node* removeMin(Node* node)
     {
-        return m_size == 0;
+        if(node->left == nullptr)
+        {
+            Node* rightNode = node->right;
+            node->right = nullptr;
+            delete node;
+            m_size--;
+            return rightNode;
+        }
+        node->left = removeMin(node->left);
+        return node;
     }
-    
+
+public:
+    // 从二分搜索树中删除键为key的节点
+    V remove(K key) override
+    {
+        Node* node = getNode(root, key);
+        V res = node->Value;
+        root = remove(root, key);
+
+        return res;
+    }
+
+private:
+    Node* remove(Node* node, K key)
+    {
+        if(node == nullptr)
+        {
+            return nullptr;
+        }
+
+        if(key > node->Key)
+        {
+            node->right = remove(node->right, key);
+            return node;
+        }
+        else if(key < node->Key)
+        {
+            node->left = remove(node->left, key);
+            return node;
+        }
+        else
+        {
+            if(node->left == nullptr)
+            {
+                Node* rightNode = node->right;
+                node->right = nullptr;
+                delete node;
+                m_size--;
+                return rightNode;
+            }
+
+            if(node->right == nullptr)
+            {
+                Node* leftNode = node->left;
+                node->left = nullptr;
+                delete node;
+                m_size--;
+                return leftNode;
+            }
+
+            Node* succNode = minimum(node->right);
+            Node* successor = new Node(succNode->Key, succNode->Value);
+            successor->right = removeMin(node->right);
+            successor->left = node->left;
+
+            node->left = nullptr;
+            node->right = nullptr;
+            delete node;
+
+            return successor;
+        }
+    }
 };
 
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
-        LinkedListMap<int, int> map;
+        BSTMap<int, int> map;
         for(int num: nums1){
             if(!map.contains(num))
                 map.add(num, 1);
