@@ -1,9 +1,17 @@
-#ifndef __ARRAY_H__
-#define __ARRAY_H__
+/// 347. Top K Frequent Elements
+/// https://leetcode.com/problems/top-k-frequent-elements/description/
+///
+/// 课程中在这里暂时没有介绍这个问题
+/// 该代码主要用于使用Leetcode上的问题测试我们的MaxHeap类
 
 #include <iostream>
+#include <vector>
+#include <map>
 
 using namespace std;
+
+class Solution {
+private:
 
 template<typename T>
 class Array
@@ -48,11 +56,6 @@ public:
     {
         m_data = new T[capacity];
         m_size = 0;
-    }
-
-    ~Array()
-    {
-        delete[] m_data;
     }
 
     int getCapacity() const
@@ -214,4 +217,178 @@ public:
     }
 };
 
-#endif
+private:
+
+template <typename T>
+class MaxHeap
+{
+private:
+    Array<T> m_data;
+
+public:
+    MaxHeap(int capacity) : m_data(capacity) { }
+
+    MaxHeap() = default;
+
+    // 返回堆中的元素个数
+    int size()
+    {
+        return m_data.getSize();
+    }
+
+    // 返回一个布尔值, 表示堆中是否为空
+    bool isEmpty()
+    {
+        return m_data.isEmpty();
+    }
+
+private:
+    // 返回完全二叉树的数组表示中，一个索引所表示的元素的父亲节点的索引
+    int parent(int index)
+    {
+        if(index == 0)
+        {
+            throw std::invalid_argument("index-0 doesn't have parent.");
+        }
+
+        return (index - 1) / 2;
+    }
+
+    // 返回完全二叉树的数组表示中，一个索引所表示的元素的左孩子节点的索引
+    int leftChild(int index)
+    {
+        return (index * 2) + 1;
+    }
+
+    // 返回完全二叉树的数组表示中，一个索引所表示的元素的右孩子节点的索引
+    int rightChild(int index)
+    {
+        return (index * 2) + 2;
+    }
+
+public:
+    // 向堆中添加元素
+    void add(T e)
+    {
+        m_data.addLast(e);
+        siftUp(m_data.getSize() - 1);
+    }
+
+private:
+    void siftUp(int k)
+    {
+        while(k > 0 && m_data.get(k) > m_data.get(parent(k)))
+        {
+            m_data.swap(k, parent(k));
+            k = parent(k);
+        }
+    }
+
+public:
+    // 看堆中的最大元素
+    T findMax()
+    {
+        if(m_data.getSize() == 0)
+        {
+            throw std::invalid_argument("Can not findMax when heap is empty.");
+        }
+
+        return m_data.get(0);
+    }
+
+    // 取出堆中最大元素
+    T extractMax()
+    {
+        T res = findMax();
+
+        m_data.swap(0, m_data.getSize() - 1);
+        m_data.removeLast();
+        siftDown(0);
+
+        return res;
+    }
+
+private:
+    void siftDown(int k)
+    {
+        while(leftChild(k) < m_data.getSize())
+        {
+            int j = leftChild(k);
+            if(j + 1 < m_data.getSize() && m_data.get(j + 1) > m_data.get(j))
+            {
+                j++;
+            }
+
+            if(m_data.get(k) >= m_data.get(j))
+            {
+                break;
+            }
+
+            m_data.swap(k, j);
+            k = j;
+        }
+    }
+};
+
+class Freq {
+public:
+    int e, freq;
+
+    Freq(int e, int freq){
+        this->e = e;
+        this->freq = freq;
+    };
+
+    int compareTo(Freq& another){
+        if(freq < another.freq)
+            return 1;
+        else if(freq > another.freq)
+            return -1;
+        else
+            return 0;
+    }
+};
+
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        map<int, int> m_map;
+        for(int num: nums){
+            if(m_map.find(num) != m_map.end())
+                m_map[num] += 1;
+            else
+                m_map.insert(std::pair<int, int>(num, 1));
+        }
+
+        MaxHeap<Freq> maxHeap;
+        for(auto it = m_map.begin(); it != m_map.end(); it++){
+            int key = it->first;
+            if(maxHeap.size() < k){
+                maxHeap.add(Freq(key, m_map.find(key)->second));
+            }
+            else if(m_map.find(key)->second > maxHeap.findMax().freq){
+                maxHeap.extractMax();
+                maxHeap.add(Freq(key, m_map.find(key)->second));
+            }
+        }
+
+        vector<int> res;
+        while(!maxHeap.isEmpty())
+            res.push_back(maxHeap.extractMax().e);
+        return res;
+    }
+};
+
+void printList(vector<int> nums){
+    for(auto num: nums)
+        cout << num << " ";
+    cout << endl;
+}
+
+int main() {
+
+    vector<int> nums = {1, 1, 1, 2, 2, 3};
+    int k = 2;
+    printList((Solution()).topKFrequent(nums, k));
+
+    return 0;
+}
