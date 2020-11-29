@@ -36,6 +36,11 @@ public:
         m_size = 0;
     }
 
+    ~Array()
+    {
+        delete[] m_data;
+    }
+
     int getCapacity() const
     {
         return m_capacity;
