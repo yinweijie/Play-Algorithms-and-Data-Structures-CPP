@@ -374,17 +374,20 @@ public:
         for(auto it = m_map.begin(); it != m_map.end(); it++){
             int key = it->first;
             int value = it->second;
-            if(maxHeap.size() < k){
-                maxHeap.add(Freq(key, value));
-            }
-            else if(value > maxHeap.findMax().freq){
-                maxHeap.extractMax();
-                maxHeap.add(Freq(key, value));
-            }
+            // if(maxHeap.size() < k){
+            //     maxHeap.add(Freq(key, value));
+            // }
+            // else if(value > maxHeap.findMax().freq){
+            //     maxHeap.extractMax();
+            //     maxHeap.add(Freq(key, value));
+            // }
+            maxHeap.add(Freq(key, value));
         }
 
         vector<int> res;
-        while(!maxHeap.isEmpty())
+        // while(!maxHeap.isEmpty())
+        //     res.push_back(maxHeap.extractMax().e);
+        for(int i = 0; i < k; i++)
             res.push_back(maxHeap.extractMax().e);
         return res;
     }
