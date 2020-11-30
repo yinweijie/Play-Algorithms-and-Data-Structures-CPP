@@ -164,7 +164,7 @@ public:
             throw std::invalid_argument("Remove failed. Index is illegal.");
         }
 
-        int ret = m_data[index];
+        T ret = m_data[index];
 
         for(int i = index + 1; i < m_size; i++)
         {
@@ -334,18 +334,29 @@ class Freq {
 public:
     int e, freq;
 
+    Freq() = default;
+
     Freq(int e, int freq){
         this->e = e;
         this->freq = freq;
     };
 
-    int compareTo(Freq& another){
-        if(freq < another.freq)
-            return 1;
-        else if(freq > another.freq)
-            return -1;
-        else
-            return 0;
+    bool operator<(const Freq& rhs) const {
+        return freq < rhs.freq;
+    }
+    bool operator<=(const Freq& rhs) const {
+        return freq <= rhs.freq;
+    }
+
+    bool operator>(const Freq& rhs) const {
+        return freq > rhs.freq;
+    }
+    bool operator>=(const Freq& rhs) const {
+        return freq >= rhs.freq;
+    }
+
+    bool operator==(const Freq& rhs) const {
+        return freq == rhs.freq;
     }
 };
 
@@ -362,12 +373,13 @@ public:
         MaxHeap<Freq> maxHeap;
         for(auto it = m_map.begin(); it != m_map.end(); it++){
             int key = it->first;
+            int value = it->second;
             if(maxHeap.size() < k){
-                maxHeap.add(Freq(key, m_map.find(key)->second));
+                maxHeap.add(Freq(key, value));
             }
-            else if(m_map.find(key)->second > maxHeap.findMax().freq){
+            else if(value > maxHeap.findMax().freq){
                 maxHeap.extractMax();
-                maxHeap.add(Freq(key, m_map.find(key)->second));
+                maxHeap.add(Freq(key, value));
             }
         }
 
@@ -386,7 +398,7 @@ void printList(vector<int> nums){
 
 int main() {
 
-    vector<int> nums = {1, 1, 1, 2, 2, 3};
+    vector<int> nums = {1, 1, 1, 2, 2, 3};;
     int k = 2;
     printList((Solution()).topKFrequent(nums, k));
 
