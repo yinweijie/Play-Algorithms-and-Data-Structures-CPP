@@ -19,7 +19,7 @@ int main()
 
     cout << "Random Array" << endl;
     SortingHelper::sortTest("QuickSort", arr, n);
-    SortingHelper::sortTest("QuickSort2Ways", arr, n);
+    SortingHelper::sortTest("QuickSort2Ways", arr2, n);
     delete[] arr;
     delete[] arr2;
 
@@ -29,7 +29,7 @@ int main()
 
     cout << "Ordered Array" << endl;
     SortingHelper::sortTest("QuickSort", arr, n);
-    SortingHelper::sortTest("QuickSort2Ways", arr, n);
+    SortingHelper::sortTest("QuickSort2Ways", arr2, n);
     delete[] arr;
     delete[] arr2;
 
@@ -39,7 +39,7 @@ int main()
 
     cout << "Same Value Array" << endl;
     SortingHelper::sortTest("QuickSort", arr, n);
-    SortingHelper::sortTest("QuickSort2Ways", arr, n);
+    SortingHelper::sortTest("QuickSort2Ways", arr2, n);
     delete[] arr;
     delete[] arr2;
 

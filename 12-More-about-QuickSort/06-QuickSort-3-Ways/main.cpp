@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-11-30 20:50:00
+ * @LastEditTime: 2020-11-30 20:50:00
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /Play-Algorithms-and-Data-Structures-CPP/12-More-about-QuickSort/06-QuickSort-3-Ways/main.cpp
+ */
 #include <array>
 #include <algorithm>
 #include <iterator>
@@ -21,8 +29,8 @@ int main()
 
     cout << "Random Array" << endl;
     SortingHelper::sortTest("QuickSort", arr, n);
-    SortingHelper::sortTest("QuickSort2Ways", arr, n);
-    SortingHelper::sortTest("QuickSort3Ways", arr, n);
+    SortingHelper::sortTest("QuickSort2Ways", arr2, n);
+    SortingHelper::sortTest("QuickSort3Ways", arr3, n);
     delete[] arr;
     delete[] arr2;
     delete[] arr3;
@@ -35,8 +43,8 @@ int main()
 
     cout << "Ordered Array" << endl;
     SortingHelper::sortTest("QuickSort", arr, n);
-    SortingHelper::sortTest("QuickSort2Ways", arr, n);
-    SortingHelper::sortTest("QuickSort3Ways", arr, n);
+    SortingHelper::sortTest("QuickSort2Ways", arr2, n);
+    SortingHelper::sortTest("QuickSort3Ways", arr3, n);
     delete[] arr;
     delete[] arr2;
     delete[] arr3;
@@ -49,8 +57,8 @@ int main()
 
     cout << "Same Value Array" << endl;
     // SortingHelper::sortTest("QuickSort", arr, n);
-    SortingHelper::sortTest("QuickSort2Ways", arr, n);
-    SortingHelper::sortTest("QuickSort3Ways", arr, n);
+    SortingHelper::sortTest("QuickSort2Ways", arr2, n);
+    SortingHelper::sortTest("QuickSort3Ways", arr3, n);
     delete[] arr;
     delete[] arr2;
     delete[] arr3;
