@@ -29,6 +29,7 @@ double testHeap(vector<int>& testData, bool isHeapify)
     arr.reserve(testData.size());
     for(int i = 0; i < testData.size(); i++)
     {
+        // extractMax() 函数比较耗时(O(log(n))，把两种排序时间差距掩盖了
         arr.emplace_back(maxHeap->extractMax());
     }
 
@@ -36,7 +37,7 @@ double testHeap(vector<int>& testData, bool isHeapify)
     {
         if(arr[i - 1] < arr[i])
         {
-            throw std::invalid_argument("Errorl");
+            throw std::invalid_argument("Error");
         }
     }
 
