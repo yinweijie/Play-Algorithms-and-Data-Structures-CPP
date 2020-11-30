@@ -50,6 +50,11 @@ public:
         m_size = 0;
     }
 
+    ~Array()
+    {
+        delete[] m_data;
+    }
+
     int getCapacity() const
     {
         return m_capacity;
@@ -166,7 +171,7 @@ public:
             throw std::invalid_argument("Remove failed. Index is illegal.");
         }
 
-        int ret = m_data[index];
+        T ret = m_data[index];
 
         for(int i = index + 1; i < m_size; i++)
         {
