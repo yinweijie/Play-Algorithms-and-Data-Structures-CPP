@@ -30,7 +30,7 @@ public:
 
     T dequeue() override
     {
-        maxHeap.extractMax();
+        return maxHeap.extractMax();
     }
 
     T getFront() override
