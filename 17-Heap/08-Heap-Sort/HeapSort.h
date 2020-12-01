@@ -27,6 +27,11 @@ public:
     template <typename T>
     static void sort2(T arr[], int n)
     {
+        if(n <= 1)
+        {
+            return;
+        }
+
         // Heapify
         for(int i = (n - 2) / 2; i >= 0; i--)
         {
