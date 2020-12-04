@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2020-12-03 22:36:49
- * @LastEditTime: 2020-12-03 22:36:49
- * @LastEditors: your name
- * @Description: In User Settings Edit
- * @FilePath: /Play-Algorithms-and-Data-Structures-CPP/19-Bubble-Sort/03-Bubble-Sort-Optimized/SortingHelper.h
- */
 #ifndef __SORTINGHELPER_H__
 #define __SORTINGHELPER_H__
 
