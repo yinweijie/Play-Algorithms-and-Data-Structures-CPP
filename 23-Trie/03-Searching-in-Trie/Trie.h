@@ -11,6 +11,7 @@ using std::string;
 using std::shared_ptr;
 using std::make_shared;
 using std::pair;
+using std::make_pair;
 
 class Trie
 {
@@ -48,7 +49,7 @@ public:
         {
             if(cur->next.find(c) == cur->next.end())
             {
-                cur->next.insert(std::make_pair(c, make_shared<Node>()));
+                cur->next.insert(make_pair(c, make_shared<Node>()));
             }
 
             cur = cur->next.find(c)->second;
