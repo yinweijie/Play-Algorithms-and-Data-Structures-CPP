@@ -103,5 +103,7 @@ int main() {
     cout << wordDictionary->search(".ad") << endl; // return True
     cout << wordDictionary->search("b..") << endl; // return True
 
+    delete wordDictionary;
+
     return 0;
 }
