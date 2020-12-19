@@ -12,7 +12,7 @@ class UnionFind4 : public UF
 {
 private:
     vector<int> parent;  // parent[i]表示第一个元素所指向的父节点
-    vector<int> rank;    // parent[i]表示第i个元素所指向的父节点
+    vector<int> rank;    // rank[i]表示以i为根的集合所表示的树的层数
 
     // 查找过程, 查找元素p所对应的集合编号
     // O(h)复杂度, h为树的高度
