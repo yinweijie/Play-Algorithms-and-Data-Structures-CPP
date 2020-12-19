@@ -7,12 +7,15 @@
 
 using std::vector;
 
-// 我们的第四版Union-Find
+// 我们的第五版Union-Find
 class UnionFind5 : public UF
 {
 private:
-    vector<int> parent;  // parent[i]表示第一个元素所指向的父节点
-    vector<int> rank;    // parent[i]表示第i个元素所指向的父节点
+    // rank[i]表示以i为根的集合所表示的树的层数
+    // 在后续的代码中, 我们并不会维护rank的语意, 也就是rank的值在路径压缩的过程中, 有可能不在是树的层数值
+    // 这也是我们的rank不叫height或者depth的原因, 他只是作为比较的一个标准
+    vector<int> rank;
+    vector<int> parent;  // parent[i]表示第i个元素所指向的父节点
 
     // 查找过程, 查找元素p所对应的集合编号
     // O(h)复杂度, h为树的高度
