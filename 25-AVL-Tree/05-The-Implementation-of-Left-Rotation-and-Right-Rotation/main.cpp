@@ -5,7 +5,7 @@
 #include <regex>
 #include <chrono>
 #include <cctype>
-#include "BSTMap.h"
+#include "BST.h"
 #include "AVLTree.h"
 
 using namespace std;
