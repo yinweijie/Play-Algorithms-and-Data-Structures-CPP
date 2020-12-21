@@ -1,5 +1,5 @@
-#ifndef __BSTMAP_H__
-#define __BSTMAP_H__
+#ifndef __BST_H__
+#define __BST_H__
 
 #include <string>
 
@@ -35,13 +35,13 @@ private:
     int m_size;
 
 public:
-    BSTMap()
+    BST()
     {
         root = nullptr;
         m_size = 0;
     }
 
-    ~BSTMap()
+    ~BST()
     {
         delete root;
         m_size = 0;
