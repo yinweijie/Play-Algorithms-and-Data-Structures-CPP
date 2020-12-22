@@ -67,7 +67,7 @@ int main()
     end = std::chrono::steady_clock::now();
     std::chrono::duration<double> time2 = end - start;
 
-    cout << "BST Map: " << time2.count() << " s" << endl;
+    cout << "LinkedListMap Map: " << time2.count() << " s" << endl;
 
     return 0;
 }
