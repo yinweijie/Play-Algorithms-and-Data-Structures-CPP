@@ -62,6 +62,7 @@ public:
         return m_size == 0;
     }
 
+private:
     // 判断节点node的颜色
     bool isRed(Node* node)
     {
