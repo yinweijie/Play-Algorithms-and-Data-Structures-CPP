@@ -9,7 +9,7 @@
 #include "BST.h"
 #include "AVLTree.h"
 #include "RBTree.h"
-// #include "HashTable.h"
+#include "HashTable.h"
 
 using namespace std;
 
@@ -78,6 +78,8 @@ int main()
     vector<string> words;
     wordToVector(words, "pride-and-prejudice.txt");
 
+    cout << "Total words: " << words.size() << endl;
+
     // std::sort(words.begin(), words.end());
 
     // Test BST
@@ -145,24 +147,25 @@ int main()
 
     // Test HashTable
 
-    // start = std::chrono::steady_clock::now();
+    start = std::chrono::steady_clock::now();
 
     // HashTable<string, int> ht;
-    // for(auto word : words)
-    // {
-    //     if(ht.contains(word))
-    //     {
-    //         ht.set(word, ht.get(word) + 1);
-    //     }
-    //     else
-    //     {
-    //         ht.add(word, 1);
-    //     }
-    // }
+    HashTable<string, int> ht(131071);
+    for(auto word : words)
+    {
+        if(ht.contains(word))
+        {
+            ht.set(word, ht.get(word) + 1);
+        }
+        else
+        {
+            ht.add(word, 1);
+        }
+    }
 
-    // end = std::chrono::steady_clock::now();
-    // time = end - start;
-    // cout << "RBTree: " << time.count() << " s" << endl;
+    end = std::chrono::steady_clock::now();
+    time = end - start;
+    cout << "HashTable: " << time.count() << " s" << endl;
 
     return 0;
 }

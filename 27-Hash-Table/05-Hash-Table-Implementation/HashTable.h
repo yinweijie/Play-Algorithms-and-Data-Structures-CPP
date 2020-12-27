@@ -5,6 +5,7 @@
 #include <vector>
 #include <functional>
 #include <stdexcept>
+#include <sstream>
 
 using namespace std;
 
@@ -56,7 +57,9 @@ public:
         auto it = mymap.find(key);
         if(it == mymap.end())
         {
-            throw std::invalid_argument("key not found");
+            ostringstream os;
+            os << key << " does not exist.";
+            throw std::invalid_argument(os.str());
         }
 
         size--;
@@ -70,7 +73,9 @@ public:
         auto it = mymap.find(key);
         if(it == mymap.end())
         {
-            throw std::invalid_argument("key not found");
+            ostringstream os;
+            os << key << " does not exist.";
+            throw std::invalid_argument(os.str());
         }
 
         it->second = value;
