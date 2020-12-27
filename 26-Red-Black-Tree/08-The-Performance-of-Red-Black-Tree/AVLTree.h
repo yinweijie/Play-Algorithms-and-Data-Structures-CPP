@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <stdexcept>
+#include <sstream>
 
 using namespace std;
 
@@ -285,7 +286,9 @@ public:
         Node* node = getNode(root, key);
         if(node == nullptr)
         {
-            throw std::invalid_argument("Key: " + to_string(key) + " does not exist.");
+            ostringstream os;
+            os << "Key: " << key << " does not exist.";
+            throw std::invalid_argument(os.str());
         }
         return node->Value;
     }
@@ -295,7 +298,9 @@ public:
         Node* node = getNode(root, key);
         if(node == nullptr)
         {
-            throw std::invalid_argument("Key: " + to_string(key) + " does not exist.");
+            ostringstream os;
+            os << "Key: " << key << " does not exist.";
+            throw std::invalid_argument(os.str());
         }
         node->Value = newValue;
     }
@@ -331,7 +336,9 @@ public:
         Node* node = getNode(root, key);
         if(node == nullptr)
         {
-            throw std::invalid_argument("Key: " + to_string(key) + " does not exist.");
+            ostringstream os;
+            os << "Key: " << key << " does not exist.";
+            throw std::invalid_argument(os.str());
         }
         root = remove(root, key);
 
