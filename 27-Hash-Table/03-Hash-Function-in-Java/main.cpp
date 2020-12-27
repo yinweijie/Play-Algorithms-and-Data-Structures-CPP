@@ -29,9 +29,11 @@ int main()
     Student student(3, 2, "Bobo"s, "Liu"s);
     cout << MyHash()(student) << endl;
 
+    // 参考：https://www.tutorialspoint.com/how-to-create-an-unordered-set-of-user-defined-class-or-struct-in-cplusplus
     unordered_set<Student, MyHash> stu_set;
     stu_set.insert(student);
 
+    // 参考：https://www.geeksforgeeks.org/how-to-create-an-unordered_map-of-user-defined-class-in-cpp/
     unordered_map<Student, int, MyHash> stu_map;
     stu_map[student] = 10;
 
