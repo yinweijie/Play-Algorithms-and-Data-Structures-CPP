@@ -149,8 +149,8 @@ int main()
 
     start = std::chrono::steady_clock::now();
 
-    // HashTable<string, int> ht;
-    HashTable<string, int> ht(131071);
+    HashTable<string, int> ht;
+    // HashTable<string, int> ht(131071);
     for(auto word : words)
     {
         if(ht.contains(word))
