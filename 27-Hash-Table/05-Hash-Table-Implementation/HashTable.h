@@ -62,7 +62,10 @@ public:
             throw std::invalid_argument(os.str());
         }
 
+        V ret = it->second;
+        mymap.erase(key);
         size--;
+
         return it->second;
     }
 
