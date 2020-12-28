@@ -36,7 +36,7 @@ private:
         for(int i = 0; i < oldM; i++)
         {
             map<K, V>& mymap = hashtable[i];
-            for(auto[key, value] : mymap)
+            for(const auto& [key, value] : mymap)
             {
                 newHashtable[hashFunc(key)][key] = value;
             }
