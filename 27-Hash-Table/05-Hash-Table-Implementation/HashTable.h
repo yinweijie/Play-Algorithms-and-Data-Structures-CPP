@@ -66,7 +66,7 @@ public:
         mymap.erase(key);
         size--;
 
-        return it->second;
+        return ret;
     }
 
     void set(K key, V value)
