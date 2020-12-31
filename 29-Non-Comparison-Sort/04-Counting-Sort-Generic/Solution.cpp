@@ -20,7 +20,8 @@ public:
         for(int i = 1; i < index.size(); i++) {
             index[i] = index[i - 1] + cnt[i - 1];
         }
-
+        
+        // [index[i], index[i + 1]) 之间的值为i
         for(int i = 0; i + 1 < index.size(); i++) {
             for(int j = index[i]; j < index[i + 1]; j++) {
                 nums[j] = i;
