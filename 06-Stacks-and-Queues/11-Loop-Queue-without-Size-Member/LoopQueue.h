@@ -102,6 +102,7 @@ public:
         return m_data[front];
     }
 
+private:
     void resize(int newCapacity)
     {
         T* toDel = m_data;

@@ -149,6 +149,7 @@ public:
         return m_data[index];
     }
 
+private:
     void resize(int newCapacity)
     {
         T* toDel = m_data;
