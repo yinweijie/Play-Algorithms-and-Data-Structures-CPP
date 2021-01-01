@@ -41,6 +41,11 @@ public:
         // m_size = 0;
     }
 
+    ~LoopQueue()
+    {
+        delete[] m_data;
+    }
+
     int getCapacity() const
     {
         return m_capacity - 1;
