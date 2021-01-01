@@ -43,6 +43,11 @@ public:
         m_size = 0;
     }
 
+    ~Deque()
+    {
+        delete[] m_data;
+    }
+
     int getCapacity() const
     {
         // change "m_capacity - 1" to "m_capacity"
