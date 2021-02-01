@@ -43,6 +43,11 @@ public:
         m_size = 0;
     }
 
+    ~Deque()
+    {
+        delete[] m_data;
+    }
+
     int getCapacity() const
     {
         // change "m_capacity - 1" to "m_capacity"
@@ -144,6 +149,7 @@ public:
         return m_data[index];
     }
 
+private:
     void resize(int newCapacity)
     {
         T* toDel = m_data;

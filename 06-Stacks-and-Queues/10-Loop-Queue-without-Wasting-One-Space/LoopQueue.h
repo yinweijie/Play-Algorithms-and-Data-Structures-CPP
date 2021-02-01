@@ -44,6 +44,11 @@ public:
         m_size = 0;
     }
 
+    ~LoopQueue()
+    {
+        delete[] m_data;
+    }
+
     int getCapacity() const
     {
         // change "m_capacity - 1" to "m_capacity"
@@ -103,6 +108,7 @@ public:
         return m_data[front];
     }
 
+private:
     void resize(int newCapacity)
     {
         T* toDel = m_data;

@@ -18,6 +18,10 @@ public:
         tail = 0;
         m_size = 0;
     }
+    ~LoopQueue()
+    {
+        delete[] m_data;
+    }
 
     int getCapacity() const override
     {

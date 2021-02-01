@@ -131,7 +131,7 @@ public:
             throw std::invalid_argument("Remove failed. Index is illegal.");
         }
 
-        T ret = m_data[index];
+        int ret = m_data[index];
 
         for(int i = index + 1; i < m_size; i++)
         {
