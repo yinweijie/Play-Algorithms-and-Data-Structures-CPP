@@ -67,12 +67,16 @@ public:
             {
                 if(arr[j] > arr[j + 1])
                 {
-                    lastSwappedIndex = j + 1;
+                    lastSwappedIndex = j + 1; // [j + 1, n)都排好序了
                     swap(arr, j, j + 1);
                 }
             }
 
-            i = n - lastSwappedIndex;
+            if(lastSwappedIndex == 0) break;
+
+            i = n - lastSwappedIndex; // i也可以理解成有i个元素已经排好序
+                                      // 因此[j + 1, n) = [lastSwappedIndex, n)
+                                      // 之间有n - lastSwappedIndex个元素
         }
     }
 };

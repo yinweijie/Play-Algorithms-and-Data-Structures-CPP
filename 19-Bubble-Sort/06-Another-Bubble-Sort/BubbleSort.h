@@ -72,6 +72,8 @@ public:
                 }
             }
 
+            if(lastSwappedIndex == n - 1) break;
+
             i = lastSwappedIndex + 1;
         }
     }
