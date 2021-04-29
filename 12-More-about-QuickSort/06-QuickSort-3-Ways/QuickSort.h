@@ -141,7 +141,7 @@ private:
         }
 
         auto[lt, gt] = partition3ways(arr, l, r, u, e); // -std=c++17
-        sort3ways(arr, l, lt, u, e);
+        sort3ways(arr, l, lt - 1, u, e);
         sort3ways(arr, gt, r, u, e);
     }
 
