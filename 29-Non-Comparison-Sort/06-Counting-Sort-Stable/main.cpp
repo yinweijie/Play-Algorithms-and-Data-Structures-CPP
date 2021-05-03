@@ -48,8 +48,7 @@ int main()
         index[i + 1] = index[i] + cnt[i];
     }
 
-    vector<Student> tmp;
-    tmp.reserve(students.size());
+    vector<Student> tmp(students.size(), Student("", 0));
     for(auto student : students)
     {
         tmp[index[student.getScore()]] = student;
