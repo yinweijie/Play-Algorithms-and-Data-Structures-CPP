@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2020-11-30 20:50:00
- * @LastEditTime: 2020-11-30 20:50:00
- * @LastEditors: your name
- * @Description: In User Settings Edit
- * @FilePath: /Play-Algorithms-and-Data-Structures-CPP/12-More-about-QuickSort/06-QuickSort-3-Ways/main.cpp
- */
 #include <array>
 #include <algorithm>
 #include <iterator>
