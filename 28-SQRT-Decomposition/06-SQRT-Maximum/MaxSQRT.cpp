@@ -6,14 +6,16 @@
 
 using namespace std;
 
-class MaxSQRT {
+class MaxSQRT
+{
 private:
     vector<int> data, block;
     int N;  // 元素总个数
     int B;  // 每组元素个数
     int Bn; // 组数
 public:
-    MaxSQRT(vector<int>& nums) {
+    MaxSQRT(vector<int>& nums)
+    {
         N = nums.size();
         if(N == 0) return;
 
@@ -22,25 +24,29 @@ public:
         data = nums;
 
         block.assign(Bn, std::numeric_limits<int>::min());
-        for(int i = 0; i < data.size(); i++) {
+        for(int i = 0; i < data.size(); i++)
+        {
             block[i / B] = std::max(block[i / B], data[i]);
         }
     }
 
-    void update(int i, int val) {
+    void update(int i, int val)
+    {
         if(i < 0 || i >= N) return;
 
         int blockIndex = i / B;
         data[i] = val;
 
         block[blockIndex] = std::numeric_limits<int>::min();
-        for(int j = blockIndex * B; j < std::min((blockIndex + 1) * B, N); j++) {
+        for(int j = blockIndex * B; j < std::min((blockIndex + 1) * B, N); j++)
+        {
             block[j / B] = std::max(block[j / B], data[j]);
         }
     }
     
     int maxRange(int x, int y) {
-        if(x < 0 || x >= N || y < 0 || y >= N || x > y) {
+        if(x < 0 || x >= N || y < 0 || y >= N || x > y)
+        {
             return 0;
         }
 
@@ -48,22 +54,27 @@ public:
         int blockEnd = y / B;
 
         int res = std::numeric_limits<int>::min();
-        if(blockBeg == blockEnd) {
+        if(blockBeg == blockEnd)
+        {
 
-            for(int i = x; i <= y ; i++) {
+            for(int i = x; i <= y ; i++)
+            {
                 res = std::max(res, data[i]);
             }
 
             return res;
         }
 
-        for(int i = x; i < (blockBeg + 1) * B; i++) {
+        for(int i = x; i < (blockBeg + 1) * B; i++)
+        {
             res = std::max(res, data[i]);
         }
-        for(int i = blockBeg + 1; i < blockEnd; i++) {
+        for(int i = blockBeg + 1; i < blockEnd; i++)
+        {
             res = std::max(res, block[i]);
         }
-        for(int i = blockEnd * B; i <= y; i++) {
+        for(int i = blockEnd * B; i <= y; i++)
+        {
             res = std::max(res, data[i]);
         }
 
