@@ -25,28 +25,33 @@ public:
         // 计数排序过程
         int R = 256; // 0x00 ~ 0xFF+1
 
+        /// O(w * (n + R)) ==> O(n)
         vector<int> cnt(R , 0);
         vector<int> index(R + 1, 0);
         vector<string> tmp(arr.size());
         for(int r = w - 1; r >= 0; r--)
         {                
+            // O(n)
             std::fill(cnt.begin(), cnt.end(), 0);
             for(const auto& str : arr)
             {
                 cnt[str[r]]++;
             }
 
+            // O(R)
             for(int i = 0; i < R; i++)
             {
                 index[i + 1] = index[i] + cnt[i];
             }
 
+            // O(n)
             for(const auto& str : arr)
             {
                 tmp[index[str[r]]] = str;
                 index[str[r]]++;
             }
 
+            // O(n)
             for(int i = 0; i < tmp.size(); i++)
             {
                 arr[i] = tmp[i];
