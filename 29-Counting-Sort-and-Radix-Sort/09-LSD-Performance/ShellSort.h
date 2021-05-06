@@ -18,7 +18,7 @@ public:
         {
             for(int i = h; i < n; i++)
             {
-                int t = arr[i];
+                T t = arr[i];
                 int j;
                 for(j = i; j - h >= 0 && arr[j - h] > t; j -= h)
                 {

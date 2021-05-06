@@ -1,5 +1,5 @@
 #ifndef __LSDSORT_H__
-#define __LSORT_H__
+#define __LSDSORT_H__
 
 #include <vector>
 #include <string>
@@ -15,7 +15,7 @@ private:
     LSDSort() { }
 
 public:
-    static void sort(string arr[], int w, int n)
+    static void sort(string* arr, int w, int n)
     {
         for(int i = 0; i < n; i++)
         {
