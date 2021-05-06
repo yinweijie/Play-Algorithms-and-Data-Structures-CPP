@@ -36,18 +36,21 @@ int main()
     // 计数排序过程
     int R = 101;
 
+    // O(n)
     vector<int> cnt(R , 0);
     for(auto student : students)
     {
         cnt[student.getScore()]++;
     }
 
+    // O(R)
     vector<int> index(R + 1, 0);
     for(int i = 0; i < R; i++)
     {
         index[i + 1] = index[i] + cnt[i];
     }
 
+    // O(n)
     vector<Student> tmp(students.size(), Student("", 0));
     for(auto student : students)
     {
@@ -55,10 +58,13 @@ int main()
         index[student.getScore()]++;
     }
 
+    // O(n)
     for(int i = 0; i < n; i++)
     {
         students[i] = tmp[i];
     }
+
+    // O(n + R)
 
     // 验证计数排序算法
     for(int i = 1; i < n; i++)
