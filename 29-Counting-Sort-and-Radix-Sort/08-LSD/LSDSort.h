@@ -26,7 +26,7 @@ public:
         }
 
         // 计数排序过程
-        int R = 256; // 0x00 ~ 0xFF+1
+        int R = 256; // 0x00 ~ 0xFF
 
         /// O(w * (n + R)) ==> O(n)
         vector<int> cnt(R , 0);
