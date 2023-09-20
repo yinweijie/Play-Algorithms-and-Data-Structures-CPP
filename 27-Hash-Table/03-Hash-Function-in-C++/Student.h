@@ -32,7 +32,7 @@ struct Student
 };
 
 // 参考：https://en.cppreference.com/w/cpp/string/byte/tolower
-std::string str_tolower(std::string s)
+inline std::string str_tolower(std::string s)
 {
     std::transform(s.begin(), s.end(), s.begin(), 
                    [](unsigned char c){ return std::tolower(c); }
